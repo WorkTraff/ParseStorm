@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>ParseStorm</title>
+  <title>ParseStorm — Telegram ЦА</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -11,34 +11,76 @@
       background: #0d1117;
       color: #c9d1d9;
       padding: 2rem;
+      max-width: 600px;
+      margin: auto;
     }
     h1 {
       color: #58a6ff;
+      font-size: 2rem;
     }
     button {
       background-color: #238636;
       border: none;
       border-radius: 8px;
       padding: 1rem;
-      margin: 1rem 0;
+      margin: 0.8rem 0;
       width: 100%;
-      max-width: 420px;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
     }
     button:hover {
       background-color: #2ea043;
     }
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
   </style>
+  <script>
+    function sendTestRequest() {
+      const username = prompt("Введи свой Telegram username (например, @nickname):");
+      if (username) {
+        fetch("https://api.telegram.org/bot7868506908:AAENm5sTGdUp89_yZBjW-O2gXK21AM0vDU4/sendMessage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: "7937390336",
+            text: `🧪 Тест: ${username} хочет получить 100 юзеров`
+          })
+        }).then(() => alert("✅ Запрос отправлен!")).catch(() => alert("❌ Ошибка отправки"));
+      }
+    }
+
+    function sendApplication() {
+      const niche = prompt("Введите нишу:");
+      const count = prompt("Сколько юзеров нужно?");
+      const goal = prompt("Куда направить трафик (бот, канал и т.д.):");
+      const tg = prompt("Ваш Telegram username:");
+      if (niche && count && goal && tg) {
+        const message = `📥 Заявка\nНиша: ${niche}\nКол-во: ${count}\nЦель: ${goal}\nTelegram: ${tg}`;
+        fetch("https://api.telegram.org/bot7868506908:AAENm5sTGdUp89_yZBjW-O2gXK21AM0vDU4/sendMessage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: "7937390336", text: message })
+        }).then(() => alert("✅ Заявка отправлена!")).catch(() => alert("❌ Ошибка отправки"));
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>👋 Добро пожаловать в ParseStorm</h1>
-  <p>🚀 Доставим ЦА из Telegram прямо к тебе. Выбери нужное:</p>
-  <button onclick="alert('📦 Услуги: Парсинг, доставка живых юзеров без ботов, до 3.000/день')">📦 Услуги</button>
-  <button onclick="alert('💰 Цены: 500 - 5.000₽, 1.000 - 10.000₽, 3.000 - 25.000₽, 5.000+ — договорная')">💰 Цены</button>
-  <button onclick="alert('🧪 Получить тест: Напиши @vvv1ttt — получи 100 живых юзеров бесплатно')">🧪 Получить тест</button>
-  <button onclick="alert('✍️ Заявка: Напиши нишу, объём, цель → @vvv1ttt')">✍️ Оставить заявку</button>
-  <button onclick="alert('📲 Контакт: Telegram — @vvv1ttt')">📲 Контакты</button>
+  <p>🚀 Доставим живую ЦА из Telegram: без ботов, без спама, до 3000/день.</p>
+  <button onclick="alert('📦 Услуги:\n• Парсинг из конкурентов\n• Доставка в бота\n• Без ботов, без фейков')">📦 Услуги</button>
+  <button onclick="alert('💰 Цены:\n500 — 5.000₽\n1000 — 10.000₽\n3000 — 25.000₽\n5000+ — договорная')">💰 Цены</button>
+  <button onclick="sendTestRequest()">🧪 Получить тест</button>
+  <button onclick="sendApplication()">✍️ Оставить заявку</button>
+  <button onclick="alert('📲 Контакт: @vvv1ttt')">📲 Контакт</button>
+  <div class="footer">© 2025 ParseStorm</div>
 </body>
 </html>
